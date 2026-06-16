@@ -5,20 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Innovphil links</title>
     <link rel="stylesheet" href="styles.css" />
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
 
-  <!-- 2. Automatic QR Code Tracker Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Checks if the QR code URL contained ?utm_source=qrcode
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('utm_source') === 'qrcode') {
-        // Sends a designated event signal straight to your Vercel Dashboard
-        window.va('event', { name: 'QR Code Scan' });
-      }
-    });
-  </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // 1. Existing UTM tracking logic
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('utm_source') === 'qrcode') {
+          window.va('event', { name: 'QR Code Scan' });
+        }
+
+        // 2. Track individual link clicks
+        const linkButtons = document.querySelectorAll('.link-button');
+        
+        linkButtons.forEach(button => {
+          button.addEventListener('click', function () {
+            // Extracts the clean text inside the button for the event label
+            const buttonName = this.textContent.trim(); 
+            
+            // Sends a custom event to Vercel Analytics with the specific button name
+            window.va('event', { 
+              name: 'Link Click', 
+              data: { button: buttonName } 
+            });
+          });
+        });
+      });
+    </script>
   </head>
   <body>
     <div class="profile">
