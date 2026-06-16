@@ -6,29 +6,42 @@
     <title>Innovphil links</title>
     <link rel="stylesheet" href="styles.css" />
 
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
     <script defer src="/_vercel/insights/script.js"></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        // 1. Existing UTM tracking logic
+        
+        // Existing UTM tracking logic
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('utm_source') === 'qrcode') {
           window.va('event', { name: 'QR Code Scan' });
         }
 
-        // 2. Track individual link clicks
+        // Track individual link clicks securely
         const linkButtons = document.querySelectorAll('.link-button');
         
         linkButtons.forEach(button => {
-          button.addEventListener('click', function () {
-            // Extracts the clean text inside the button for the event label
-            const buttonName = this.textContent.trim(); 
+          button.addEventListener('click', function (event) {
+            // Prevent immediate navigation so the event can fire
+            event.preventDefault(); 
             
-            // Sends a custom event to Vercel Analytics with the specific button name
+            const buttonName = this.textContent.trim();
+            const targetUrl = this.getAttribute('href');
+            const targetWindow = this.getAttribute('target') || '_self';
+
+            // Send custom event to Vercel
             window.va('event', { 
               name: 'Link Click', 
               data: { button: buttonName } 
             });
+
+            // Delay navigation by 150ms to allow Vercel's analytics request to clear
+            setTimeout(() => {
+              window.open(targetUrl, targetWindow);
+            }, 150);
           });
         });
       });
