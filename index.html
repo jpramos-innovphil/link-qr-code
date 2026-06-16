@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Innovphil links</title>
     <link rel="stylesheet" href="styles.css" />
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <!-- 2. Automatic QR Code Tracker Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Checks if the QR code URL contained ?utm_source=qrcode
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('utm_source') === 'qrcode') {
+        // Sends a designated event signal straight to your Vercel Dashboard
+        window.va('event', { name: 'QR Code Scan' });
+      }
+    });
+  </script>
   </head>
   <body>
     <div class="profile">
@@ -76,26 +90,5 @@
         Innovphil</a
       >
     </div>
-    <!-- 1. Vercel Web Analytics Core Tracking -->
-    <script>
-      window.va =
-        window.va ||
-        function () {
-          (window.vaq = window.vaq || []).push(arguments);
-        };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
-
-    <!-- 2. Automatic QR Code Tracker Script -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // Checks if the QR code URL contained ?utm_source=qrcode
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('utm_source') === 'qrcode') {
-          // Sends a designated event signal straight to your Vercel Dashboard
-          window.va('event', { name: 'QR Code Scan' });
-        }
-      });
-    </script>
   </body>
 </html>
