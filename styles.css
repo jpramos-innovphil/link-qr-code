@@ -47,11 +47,16 @@ img {
   text-decoration: none;
   font-weight: 600;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-  padding: 16px 40px 16px 60px;
+  padding: 16px 56px; 
+  box-sizing: border-box;
+  width: 100%;
+  
+  /* FIXED: Tells the layout engine how to strictly clamp and wrap text strings */
   flex-wrap: wrap;           
-  word-break: break-word;      
+  word-break: break-word; 
+  overflow-wrap: anywhere; /* Forces Chrome to break the line instead of overflowing */     
   text-align: center;  
+
 }
 .link-button:hover {
   transform: scale(1.02);
@@ -67,7 +72,7 @@ img {
   left: 4px;              
   overflow: hidden;        
   display: flex;
-  justify-content: center;     
+  justify-content: center;       
 }
 
 
