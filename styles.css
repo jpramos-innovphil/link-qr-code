@@ -41,22 +41,19 @@ img {
   background-color: rgb(3, 4, 94);
   color: #ffffff;
   text-align: center;
-  padding: 16px;
+  padding: 16px 20px;
   margin-bottom: 16px;
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  padding: 16px 56px; 
-  box-sizing: border-box;
-  width: 100%;
-  
-  /* FIXED: Tells the layout engine how to strictly clamp and wrap text strings */
+  transition: transform 0.2s;
+  padding: 16px 40px 16px 60px;
   flex-wrap: wrap;           
-  word-break: break-word; 
-  overflow-wrap: anywhere; /* Forces Chrome to break the line instead of overflowing */     
+  word-break: break-word;      
   text-align: center;  
-
+  white-space: normal;
+  height: auto;
 }
 .link-button:hover {
   transform: scale(1.02);
@@ -72,7 +69,7 @@ img {
   left: 4px;              
   overflow: hidden;        
   display: flex;
-  justify-content: center;       
+  justify-content: center;     
 }
 
 
@@ -82,7 +79,7 @@ img {
   font-size: 45px; 
   font-weight: bold;
   position: absolute;
-  bottom: -14px;  
+  bottom: -14px;  */
   right: 11px; 
   line-height: 1;
   user-select: none;
